@@ -101,8 +101,7 @@ BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 
 # Kernel Modules
 NEED_KERNEL_MODULE_RECOVERY := true
-BOARD_RECOVERY_KERNEL_MODULES := $(strip $(shell for i in $$(cat $(DEVICE_PATH)/modules/modules.load); do [ "$$i" != "modules.load" ] && echo $(DEVICE_PATH)/modules/$$i; done))
-BOARD_RECOVERY_KERNEL_MODULES_LOAD := $(BOARD_RECOVERY_KERNEL_MODULES)
+BOARD_RECOVERY_KERNEL_MODULES := $(wildcard $(DEVICE_PATH)/modules/*.ko)
 TW_LOAD_VENDOR_MODULES := $(BOARD_RECOVERY_KERNEL_MODULES)
 
 # File systems
